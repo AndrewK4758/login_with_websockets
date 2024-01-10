@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import { router as loginUser } from './src/routes/login_user.js';
 import { router as registerUser } from './src/routes/register_user.js';
 
-const x = dotenv.config({ path: '../.env' });
+const x = dotenv.config({ path: '/etc/secrets/.env' });
 console.log(x);
 const app = express();
 app.use(cors());
