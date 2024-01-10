@@ -27,7 +27,7 @@ export default function LoginUser({
 			};
 
 			axios
-				.post('https://login-server-g7i8.onrender.com/api/v1/login', user)
+				.post('https://login-server-131l.onrender.com/api/v1/login', user)
 				.then((res) => {
 					console.log(res.data);
 					socket.connect();

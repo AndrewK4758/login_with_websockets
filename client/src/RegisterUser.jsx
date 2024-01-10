@@ -30,7 +30,7 @@ export default function RegisterUser({
 			};
 
 			axios
-				.post('https://login-server-g7i8.onrender.com/api/v1/register', user)
+				.post('https://login-server-131l.onrender.com/api/v1/register', user)
 				.then((res) => {
 					console.log(res.data);
 					setRegister(!register);
