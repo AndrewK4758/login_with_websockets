@@ -1,5 +1,5 @@
-import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
 
 const x = dotenv.config();
 console.log(x, 'db');
@@ -8,9 +8,7 @@ const URL = process.env.DB_URL;
 
 console.log(URL);
 
-const mongoClient = new MongoClient(
-	'mongodb+srv://aKlapper:ogvD6BJq4AJiUPGY@cluster0.dehexay.mongodb.net/?retryWrites=true&w=majority'
-);
+const mongoClient = new MongoClient(URL);
 
 const DB_NAME = process.env.DB_NAME;
 const DB_COLLECTION = process.env.DB_COLLECTION;
