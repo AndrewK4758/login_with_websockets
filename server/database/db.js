@@ -8,7 +8,7 @@ const URL = process.env.DB_URL;
 
 console.log(URL);
 
-const mongoClient = new MongoClient(URL);
+const mongoClient = await new MongoClient(URL);
 
 const DB_NAME = process.env.DB_NAME;
 const DB_COLLECTION = process.env.DB_COLLECTION;
