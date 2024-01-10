@@ -4,6 +4,8 @@ dotenv.config({ path: '../.env' });
 
 const URL = process.env.DB_URL;
 
+console.log(URL);
+
 const mongoClient = new MongoClient(URL);
 
 const DB_NAME = process.env.DB_NAME;
