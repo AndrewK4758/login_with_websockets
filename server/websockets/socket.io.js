@@ -7,8 +7,8 @@ const httpServer = createServer(app);
 const io = new Server(httpServer);
 console.log(io);
 
-io.on('connection', (socket) => {
-	socket.emit(socket.id);
+io.on('connect', (socket) => {
+	io.emit(socket.id);
 });
 
 export default httpServer;
