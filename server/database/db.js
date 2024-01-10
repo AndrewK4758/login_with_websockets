@@ -1,4 +1,8 @@
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
+
+const x = dotenv.config();
+console.log(x, 'db');
 
 const URL = process.env.DB_URL;
 
