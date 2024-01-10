@@ -4,10 +4,13 @@ import { createServer } from 'http';
 
 const httpServer = createServer(app);
 
-const io = new Server(httpServer);
-console.log(io);
+const io = new Server(httpServer, {
+	cors: {
+		origin: 'https://login-server-131l.onrender.com',
+	},
+});
 
-io.on('connect', (socket) => {
+io.on('connection', (socket) => {
 	io.emit(socket.id);
 });
 
