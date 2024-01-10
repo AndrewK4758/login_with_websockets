@@ -1,14 +1,8 @@
-import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
-
-const x = dotenv.config();
-console.log(x, 'db');
 
 const URL = process.env.DB_URL;
 
-console.log(URL);
-
-const mongoClient = await new MongoClient(URL);
+const mongoClient = new MongoClient(URL);
 
 const DB_NAME = process.env.DB_NAME;
 const DB_COLLECTION = process.env.DB_COLLECTION;

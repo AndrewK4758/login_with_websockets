@@ -1,10 +1,6 @@
 import httpServer from './websockets/socket.io.js';
-import dotenv from 'dotenv';
 
-const x = dotenv.config();
-console.log(x, 'server');
-
-const PORT = process.env.PORT || 4200;
+const PORT = process.env.PORT;
 
 httpServer.listen(PORT, () => {
 	console.log(`httpServer active on ${PORT}`);
