@@ -1,0 +1,71 @@
+html,
+body {
+	background-color: #010101;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	color: #ffd300;
+	text-align: center;
+}
+
+.form {
+	color: #ffd300;
+	display: flex;
+	flex-flow: column;
+	border: #ffd300 solid 2px;
+	border-radius: 5px;
+	height: 250px;
+	width: 98vw;
+	margin: auto;
+}
+
+.playerName {
+	flex: 3 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	margin: 0 5% 0 5%;
+}
+
+.email {
+	flex: 3 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	margin: 0 5% 0 5%;
+}
+
+.pass {
+	flex: 3 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	margin: 0 5% 0 5%;
+}
+
+.buttons {
+	min-height: 2rem;
+	display: flex;
+	justify-content: space-evenly;
+	margin: auto 5% 2% 5%;
+}
+
+.register {
+	float: inline-end;
+	min-height: 2rem;
+	margin: 0 5% 0 0;
+}
+
+label {
+	text-align: start;
+}
+
+input {
+	width: 80%;
+	align-self: center;
+}
