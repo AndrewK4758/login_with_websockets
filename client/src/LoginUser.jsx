@@ -31,6 +31,7 @@ export default function LoginUser({
 				.then((res) => {
 					console.log(res.data);
 					socket.connect();
+					console.log('attempt websocket');
 					socket.on('connect', () => {
 						console.log(socket.id);
 					});
