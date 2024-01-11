@@ -1,10 +1,10 @@
 import app from '../app.js';
 import { Server } from 'socket.io';
-import { createServer } from 'http';
+import { createServer } from 'https';
 import fs from 'fs';
 
 const options = {
-	key: fs.readFileSync('../server/ssl/andrew-k.us_key.key'),
+	key: fs.readFileSync('../server/ssl/andrew-k.us_key.txt'),
 	cert: fs.readFileSync('../server/ssl/andrew-k_us.crt'),
 	ca: fs.readFileSync('../server/ssl/andrew-k_us.ca-bundle'),
 };
