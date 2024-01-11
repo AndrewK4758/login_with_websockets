@@ -13,15 +13,19 @@ const options = {
 */
 
 const allowedOrigins = [
-	'https://www.andrew-k.us:*',
-	'https://login-server-131l.onrender.com:*',
+	'https://www.andrew-k.us',
+	'https://www.login-server-131l.onrender.com:',
 ];
 
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
 	cors: {
-		origin: allowedOrigins,
+		origin: [
+			'https://www.andrew-k.us',
+			'https://www.login-server-131l.onrender.com:',
+		],
+		methods: ['GET', 'POST'],
 	},
 });
 
