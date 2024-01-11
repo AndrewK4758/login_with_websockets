@@ -21,10 +21,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
 	cors: {
-		origin: [
-			'https://www.andrew-k.us',
-			'https://www.login-server-131l.onrender.com:',
-		],
+		origin: allowedOrigins,
 		methods: ['GET', 'POST'],
 	},
 });
