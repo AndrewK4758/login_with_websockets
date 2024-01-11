@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import RegisterUser from './RegisterUser.jsx';
 import LoginUser from './LoginUser.jsx';
+import socket from './socket.io.js';
 
 const formValidator = (email, password, playerName) => {
 	const regexPlayer = /[a-zA-Z0-9\s]{2,32}/g;

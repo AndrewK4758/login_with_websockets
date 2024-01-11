@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const URL = 'https://login-server-131l.onrender.com';
+const URL = 'https://www.andrew-k.us';
 
 const socket = io(URL, { autoConnect: false });
 

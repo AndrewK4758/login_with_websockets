@@ -35,8 +35,10 @@ export default function LoginUser({
 					socket.on('connect', () => {
 						console.log(socket.id);
 					});
+					socket.on('new-user', (data) => {
+						console.log(data);
+					});
 				})
-
 				.catch((err) => {
 					const message = err.response.data;
 					alert(message);
