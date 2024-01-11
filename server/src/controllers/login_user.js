@@ -22,5 +22,5 @@ export default async function loginUser(req, res, next) {
 	if (!correctPassword) {
 		return res.status(404).send('Incorrect Password');
 	}
-	res.send('Logged in');
+	res.send(user);
 }
