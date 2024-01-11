@@ -28,7 +28,7 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
 	console.log(socket.id);
-	io.emit(socket.id);
+	io.emit('new-user', socket.id);
 });
 
 export default httpServer;
