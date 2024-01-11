@@ -5,9 +5,8 @@ import fs from 'fs';
 
 const options = {
 	key: fs.readFileSync('../server/ssl/andrew-k.us_key.key'),
-	cert: fs.readFileSync('../server/ssl/cert.pem'),
-	requestCert: false,
-	rejectUnauthorized: false,
+	cert: fs.readFileSync('../server/ssl/andrew-k_us.crt'),
+	ca: fs.readFileSync('../server/ssl/andrew-k_us.ca-bundle'),
 };
 
 const httpsServer = createServer(options, app);
