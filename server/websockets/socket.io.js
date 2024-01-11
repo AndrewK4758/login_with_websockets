@@ -6,14 +6,13 @@ import fs from 'fs';
 const options = {
 	key: fs.readFileSync('../server/ssl/pubkey.txt'),
 	cert: fs.readFileSync('../server/ssl/andrew-k.us.crt'),
+	requestCert: false,
+	rejectUnauthorized: false,
 };
 
-console.log(options.key);
-console.log(options.cert);
+const httpsServer = createServer(options, app);
 
-const httpServer = createServer(options, app);
-
-const io = new Server(httpServer, {
+const io = new Server(httpsServer, {
 	cors: {
 		origin: 'https://login-server-131l.onrender.com',
 	},
@@ -24,4 +23,4 @@ io.on('connection', (socket) => {
 	io.emit(socket.id);
 });
 
-export default httpServer;
+export default httpsServer;
