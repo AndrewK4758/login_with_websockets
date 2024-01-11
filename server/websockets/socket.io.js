@@ -4,8 +4,8 @@ import { createServer } from 'https';
 import fs from 'fs';
 
 const options = {
-	key: fs.readFileSync('../server/ssl/pubkey.txt'),
-	cert: fs.readFileSync('../server/ssl/andrew-k.us.crt'),
+	key: fs.readFileSync('../server/ssl/andrew-k.us_key.key'),
+	cert: fs.readFileSync('../server/ssl/cert.pem'),
 	requestCert: false,
 	rejectUnauthorized: false,
 };
