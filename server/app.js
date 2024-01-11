@@ -5,7 +5,7 @@ import cors from 'cors';
 import { router as loginUser } from './src/routes/login_user.js';
 import { router as registerUser } from './src/routes/register_user.js';
 
-dotenv.config();
+dotenv.config({ path: './.env' });
 
 const app = express();
 app.use(cors());
