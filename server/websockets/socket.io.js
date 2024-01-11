@@ -1,17 +1,20 @@
 import app from '../app.js';
 import { Server } from 'socket.io';
-import { createServer } from 'https';
+import { createServer } from 'http';
 import fs from 'fs';
 
+/**
+ * FOR HTTPS SERVER 
 const options = {
-	key: fs.readFileSync('../server/ssl/andrew-k.us_key.txt'),
+	key: fs.readFileSync('../server/ssl/andrew-k.us.key'),
 	cert: fs.readFileSync('../server/ssl/andrew-k_us.crt'),
 	ca: fs.readFileSync('../server/ssl/andrew-k_us.ca-bundle'),
 };
+*/
 
-const httpsServer = createServer(options, app);
+const httpServer = createServer(app);
 
-const io = new Server(httpsServer, {
+const io = new Server(httpServer, {
 	cors: {
 		origin: 'https://login-server-131l.onrender.com',
 	},
@@ -22,4 +25,4 @@ io.on('connection', (socket) => {
 	io.emit(socket.id);
 });
 
-export default httpsServer;
+export default httpServer;
