@@ -1,7 +1,7 @@
 import app from '../app.js';
 import { Server } from 'socket.io';
 import { createServer } from 'http';
-import fs from 'fs';
+// import fs from 'fs';
 
 /**
  * FOR HTTPS SERVER 
@@ -16,7 +16,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
 	cors: {
-		origin: 'https://andrew-k.us',
+		origin: 'https://www.andrew-k.us',
 	},
 });
 
