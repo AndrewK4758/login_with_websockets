@@ -18,7 +18,7 @@ const allowedOrigins = [
 	'http://localhost:5173',
 ];
 
-const httpServer = createServer(options, app);
+const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
 	cors: {
