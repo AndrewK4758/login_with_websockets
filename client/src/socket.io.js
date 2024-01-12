@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 // 	'http://127.0.0.1:4443',
 // ];
 
-const URL = 'https://127.0.0.1:4443';
+const URL = 'https://www.andrew-k.us';
 
 const socket = io(URL, { autoConnect: false });
 
