@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import RegisterUser from './RegisterUser.jsx';
 import LoginUser from './LoginUser.jsx';
-import socket from './socket.io.js';
+import bcrypt from 'bcryptjs';
 
 const formValidator = (email, password, playerName) => {
 	const regexPlayer = /[a-zA-Z0-9\s]{2,32}/g;
@@ -15,6 +15,8 @@ const formValidator = (email, password, playerName) => {
 	else return true;
 };
 
+const salt = bcrypt.genSaltSync(10);
+
 export default function App() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -25,6 +27,7 @@ export default function App() {
 		<main>
 			{!register && (
 				<LoginUser
+					salt={salt}
 					email={email}
 					password={password}
 					setEmail={setEmail}
@@ -35,6 +38,7 @@ export default function App() {
 			)}
 			{register && (
 				<RegisterUser
+					salt={salt}
 					register={register}
 					playerName={playerName}
 					email={email}

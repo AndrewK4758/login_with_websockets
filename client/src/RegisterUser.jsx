@@ -1,10 +1,12 @@
 import axios from 'axios';
-import Header from './components/Header.jsx';
+import bcrypt from 'bcryptjs';
+import Banner from './components/Bannerer.jsx';
 import Form from './Form.jsx';
 import { Player } from '../../project/src/player.js';
 import './App.css';
 
 export default function RegisterUser({
+	salt,
 	register,
 	playerName,
 	email,
@@ -18,6 +20,8 @@ export default function RegisterUser({
 	const handleRegisterSubmit = (e) => {
 		e.preventDefault();
 
+		const hashPassword = bcrypt.hashSync(password, salt);
+
 		if (!formValidator(email, password, playerName)) {
 			alert(
 				'Player Name must be 2-32 letters or numbers. Email must be valid. Password is minimum of 8 characters'
@@ -26,11 +30,11 @@ export default function RegisterUser({
 			const user = {
 				player: new Player(playerName),
 				email: email,
-				password: password,
+				password: hashPassword,
 			};
 
 			axios
-				.post('https://login-server-131l.onrender.com/api/v1/register', user)
+				.post('https://127.0.0.1:4443/api/v1/register', user)
 				.then((res) => {
 					console.log(res.data);
 					setRegister(!register);
@@ -45,7 +49,7 @@ export default function RegisterUser({
 	};
 	return (
 		<div>
-			<Header
+			<Banner
 				className={'header'}
 				title={'Welcome'}
 				message={'Register to enter'}

@@ -22,5 +22,13 @@ export default async function loginUser(req, res, next) {
 	if (!correctPassword) {
 		return res.status(404).send('Incorrect Password');
 	}
+
+	const cookie = {
+		'Player Name': user.player.playerName,
+		id: user._id,
+		email: email,
+		password: password,
+	};
+	res.cookie('user', cookie, { secure: true });
 	res.send(user);
 }

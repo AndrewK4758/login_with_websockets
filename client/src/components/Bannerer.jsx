@@ -1,4 +1,4 @@
-export default function Header({ className, title, message, additional }) {
+export default function Banner({ className, title, message, additional }) {
 	return (
 		<header className={className}>
 			<h1>{title}</h1>

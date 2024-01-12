@@ -1,11 +1,13 @@
 import axios from 'axios';
-import Header from './components/Header.jsx';
+import bcrypt from 'bcryptjs';
+import Banner from './components/Bannerer.jsx';
 import Button from './components/Button.jsx';
 import Form from './Form.jsx';
 import socket from './socket.io.js';
 import './App.css';
 
 export default function LoginUser({
+	salt,
 	email,
 	password,
 	setEmail,
@@ -16,6 +18,8 @@ export default function LoginUser({
 	const handleLoginSubmit = (e) => {
 		e.preventDefault();
 
+		const hashPassword = bcrypt.hashSync(password, salt);
+
 		if (!formValidator(email, password))
 			alert(
 				'Please check login fields. Enter valid email. Password is minimum of 8: characters, 1 upper, 1 special'
@@ -23,20 +27,18 @@ export default function LoginUser({
 		else {
 			const user = {
 				email: email,
-				password: password,
+				password: hashPassword,
 			};
+			console.log(user);
 
 			axios
-				.post('https://login-server-131l.onrender.com/api/v1/login', user)
+				.post('https://127.0.0.1:4443/api/v1/login', user)
 				.then((res) => {
-					console.log(res.data);
+					const { user_id, player, email, password } = res.data;
+					console.log(player.playerName);
 					socket.connect();
-					console.log('attempt websocket');
 					socket.on('connect', () => {
 						console.log(socket.id);
-					});
-					socket.on('new-user', (data) => {
-						console.log(data);
 					});
 				})
 				.catch((err) => {
@@ -49,7 +51,7 @@ export default function LoginUser({
 
 	return (
 		<div>
-			<Header
+			<Banner
 				className={'header'}
 				title={'Welcome'}
 				message={'Login to enter'}
@@ -61,7 +63,7 @@ export default function LoginUser({
 				setEmail={setEmail}
 				handleSubmit={handleLoginSubmit}
 			/>
-			<Header
+			<Banner
 				className={'header'}
 				additional={'If you are a new player, click to register'}
 			/>
