@@ -1,19 +1,11 @@
-export default function InputField({
-	autoComplete,
-	type,
-	name,
-	id,
-	value,
-	handleChange,
-}) {
+export default function InputField({ autoComplete, type, name, id, refValue }) {
 	return (
 		<input
 			autoComplete={autoComplete}
 			type={type}
 			name={name}
 			id={id}
-			value={value}
-			onChange={(e) => handleChange(e.target.value)}
+			ref={refValue}
 		/>
 	);
 }

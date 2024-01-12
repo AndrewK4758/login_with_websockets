@@ -1,4 +1,4 @@
-export default function PasswordRegister({ setPassword, password }) {
+export default function PasswordRegister({ password }) {
 	return (
 		<div className='pass'>
 			<label htmlFor='password'>Password:</label>
@@ -6,8 +6,7 @@ export default function PasswordRegister({ setPassword, password }) {
 				type='password'
 				id='password'
 				autoComplete='new-password'
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
+				ref={password}
 			/>
 		</div>
 	);

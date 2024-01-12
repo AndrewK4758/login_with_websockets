@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import userStore from '../../database/db.js';
 
 const validatatePassword = async (user, password) => {
@@ -13,11 +14,12 @@ export default async function loginUser(req, res, next) {
 		return res
 			.status(404)
 			.send(
-				'Email and/or Password not recognized, Please try again or register to continue'
+				'Email not recognized, Please corrent email or register to continue'
 			);
 	}
 
-	const correctPassword = await validatatePassword(user, password);
+	const correctPassword = bcrypt.compare(password, user.password);
+	// const correctPassword = await validatatePassword(user, hashPassword);
 
 	if (!correctPassword) {
 		return res.status(404).send('Incorrect Password');

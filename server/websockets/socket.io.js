@@ -15,6 +15,7 @@ const allowedOrigins = [
 	'https://www.andrew-k.us',
 	'https://www.login-server-131l.onrender.com:',
 	'http://127.0.0.1:4443',
+	'http://localhost:5173',
 ];
 
 const httpServer = createServer(options, app);

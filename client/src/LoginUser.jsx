@@ -1,41 +1,32 @@
 import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import Banner from './components/Bannerer.jsx';
 import Button from './components/Button.jsx';
 import Form from './Form.jsx';
 import socket from './socket.io.js';
 import './App.css';
 
-export default function LoginUser({
-	salt,
-	email,
-	password,
-	setEmail,
-	setPassword,
-	formValidator,
-	setRegister,
-}) {
+export default function LoginUser({ email, password, formValidator, setRegister }) {
 	const handleLoginSubmit = (e) => {
 		e.preventDefault();
 
-		const hashPassword = bcrypt.hashSync(password, salt);
+		const emailRef = email.current.value;
+		const passwordRef = password.current.value;
 
-		if (!formValidator(email, password))
+		if (!formValidator(emailRef, passwordRef))
 			alert(
-				'Please check login fields. Enter valid email. Password is minimum of 8: characters, 1 upper, 1 special'
+				'Email must be valid.\n Password must be minimum 8 characters; consisting of minumum: 1 Uppercase letter, 1 number, and 1 special character.'
 			);
 		else {
 			const user = {
-				email: email,
-				password: hashPassword,
+				email: emailRef,
+				password: passwordRef,
 			};
-			console.log(user);
 
 			axios
 				.post('https://127.0.0.1:4443/api/v1/login', user)
 				.then((res) => {
 					const { user_id, player, email, password } = res.data;
-					console.log(player.playerName);
+					console.log(`${player.playerName} is connected.`);
 					socket.connect();
 					socket.on('connect', () => {
 						console.log(socket.id);
@@ -59,8 +50,6 @@ export default function LoginUser({
 			<Form
 				email={email}
 				password={password}
-				setPassword={setPassword}
-				setEmail={setEmail}
 				handleSubmit={handleLoginSubmit}
 			/>
 			<Banner

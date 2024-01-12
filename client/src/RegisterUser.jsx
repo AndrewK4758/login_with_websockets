@@ -1,12 +1,10 @@
 import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import Banner from './components/Bannerer.jsx';
 import Form from './Form.jsx';
 import { Player } from '../../project/src/player.js';
 import './App.css';
 
 export default function RegisterUser({
-	salt,
 	register,
 	playerName,
 	email,
@@ -20,17 +18,19 @@ export default function RegisterUser({
 	const handleRegisterSubmit = (e) => {
 		e.preventDefault();
 
-		const hashPassword = bcrypt.hashSync(password, salt);
+		const emailRef = email.current.value;
+		const passwordRef = password.current.value;
+		const playerNameRef = playerName.current.value;
 
-		if (!formValidator(email, password, playerName)) {
+		if (!formValidator(emailRef, passwordRef, playerNameRef)) {
 			alert(
-				'Player Name must be 2-32 letters or numbers. Email must be valid. Password is minimum of 8 characters'
+				'Player name must be 2 - 32 letters and numbers only.\nEmail must be valid.\n Password must be minimum 8 characters; consisting of minumum: 1 Uppercase letter, 1 number, and 1 special character.'
 			);
 		} else {
 			const user = {
-				player: new Player(playerName),
-				email: email,
-				password: hashPassword,
+				player: new Player(playerNameRef),
+				email: emailRef,
+				password: passwordRef,
 			};
 
 			axios

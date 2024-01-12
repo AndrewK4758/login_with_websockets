@@ -7,16 +7,8 @@ export default function Form({
 	playerName,
 	email,
 	password,
-	setPlayerName,
-	setEmail,
-	setPassword,
 	handleSubmit,
 }) {
-	const handleReset = () => {
-		setEmail('');
-		setPassword('');
-	};
-
 	return (
 		<form
 			className='form'
@@ -30,8 +22,7 @@ export default function Form({
 						type={'text'}
 						name={'playerName'}
 						id={'playerName'}
-						value={playerName}
-						handleChange={setPlayerName}
+						refValue={playerName}
 					/>
 				</div>
 			)}
@@ -42,13 +33,12 @@ export default function Form({
 					type={'email'}
 					name={'email'}
 					id={'email'}
-					value={email}
-					handleChange={setEmail}
+					refValue={email}
 				/>
 			</div>
-			<PasswordRegister setPassword={setPassword} password={password} />
+			<PasswordRegister password={password} />
 			<div className='buttons'>
-				<Button type='reset' name={'Reset'} onclick={handleReset} />
+				<Button type='reset' name={'Reset'} />
 				<Button type='Submit' name={'Submit'} />
 			</div>
 		</form>

@@ -1,51 +1,51 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import RegisterUser from './RegisterUser.jsx';
 import LoginUser from './LoginUser.jsx';
-import bcrypt from 'bcryptjs';
 
 const formValidator = (email, password, playerName) => {
 	const regexPlayer = /[a-zA-Z0-9\s]{2,32}/g;
 	const regexEmail = /\S+@\S+\.\S+/;
-	const regexPassword = /^\d||\w{8,}$/;
+	const regexPassword = /([a-z])|([A-Z]+)|([0-9]+)|([\W]+)/gm;
 
-	if (!regexEmail.test(email)) return 'Please check email';
-	else if (!regexPassword.test(password)) return 'Please check Password';
-	else if (!regexPlayer.test(playerName)) return 'Please check Player Name';
-	else return true;
+	if (!regexPlayer.test(playerName)) {
+		console.log('player name incorrect');
+		return false;
+	}
+
+	if (!regexEmail.test(email)) {
+		console.log('email incorrect');
+		return false;
+	}
+
+	if (!regexPassword.test(password)) {
+		console.log('password incorrect');
+		return false;
+	} else return true;
 };
 
-const salt = bcrypt.genSaltSync(10);
-
 export default function App() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [playerName, setPlayerName] = useState('');
+	const email = useRef('');
+	const password = useRef('');
+	const playerName = useRef('');
 	const [register, setRegister] = useState(false);
 
 	return (
 		<main>
 			{!register && (
 				<LoginUser
-					salt={salt}
 					email={email}
 					password={password}
-					setEmail={setEmail}
-					setPassword={setPassword}
 					formValidator={formValidator}
 					setRegister={setRegister}
 				/>
 			)}
 			{register && (
 				<RegisterUser
-					salt={salt}
 					register={register}
 					playerName={playerName}
 					email={email}
 					password={password}
-					setPlayerName={setPlayerName}
-					setEmail={setEmail}
-					setPassword={setPassword}
 					setRegister={setRegister}
 					formValidator={formValidator}
 				/>
