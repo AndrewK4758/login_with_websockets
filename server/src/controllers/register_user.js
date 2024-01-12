@@ -12,7 +12,7 @@ export default async function registerUser(req, res, next) {
 		return res.status(400).send('Already Registered. Please Login');
 	}
 
-	user.password = bcrypt.hashSync(password, salt);
+	user.password = await bcrypt.hash(password, salt);
 
 	await userStore.insertOne(user);
 	console.log(user);
