@@ -34,7 +34,7 @@ export default function RegisterUser({
 			};
 
 			axios
-				.post('https://127.0.0.1:4443/api/v1/register', user)
+				.post('https://www.andrew-k.us/api/v1/register', user)
 				.then((res) => {
 					console.log(res.data);
 					setRegister(!register);
