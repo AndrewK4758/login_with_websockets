@@ -45,7 +45,7 @@ export default function RegisterUser() {
 			values.player = new Player(values.player);
 
 			const response = axios.post(
-				'https://https://www.andrew-k.us/api/v1/register',
+				'https://www.andrew-k.us/api/v1/register',
 				values
 			);
 			response
