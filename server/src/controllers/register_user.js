@@ -21,5 +21,5 @@ export default async function registerUser(req, res, next) {
 
 	req.session.user = user;
 	req.session.authorized = true;
-	res.send(req.session);
+	res.send(user);
 }
