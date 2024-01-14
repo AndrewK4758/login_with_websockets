@@ -19,7 +19,6 @@ export default function LoginUser({ setLoggedIn }) {
 			const response = axios.get('https://www.andrew-k.us/api/v1/session');
 			response
 				.then((res) => {
-					console.log(res, 'effect');
 					if (res.data.authorized === true) {
 						setLoggedIn([res.data.user.player.playerName, res.data.user.email]);
 						navigate('/home');

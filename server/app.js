@@ -16,7 +16,6 @@ const sessionMiddle = session({
 	saveUninitialized: false,
 	cookie: {
 		sameSite: 'strict',
-		maxAge: 1000 * 60 * 60 * 24,
 	},
 });
 
