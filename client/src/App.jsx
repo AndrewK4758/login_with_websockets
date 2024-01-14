@@ -1,55 +1,24 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import RegisterUser from './RegisterUser.jsx';
-import LoginUser from './LoginUser.jsx';
-
-const formValidator = (email, password, playerName) => {
-	const regexPlayer = /[a-zA-Z0-9\s]{2,32}/g;
-	const regexEmail = /\S+@\S+\.\S+/;
-	const regexPassword = /([a-z])|([A-Z]+)|([0-9]+)|([\W]+)/gm;
-
-	if (!regexPlayer.test(playerName)) {
-		console.log('player name incorrect');
-		return false;
-	}
-
-	if (!regexEmail.test(email)) {
-		console.log('email incorrect');
-		return false;
-	}
-
-	if (!regexPassword.test(password)) {
-		console.log('password incorrect');
-		return false;
-	} else return true;
-};
+import Home from './pages/Home.jsx';
+import LoginUser from './pages/LoginUser.jsx';
+import RegisterUser from './pages/RegisterUser.jsx';
 
 export default function App() {
-	const email = useRef('');
-	const password = useRef('');
-	const playerName = useRef('');
-	const [register, setRegister] = useState(false);
-
+	const [loggedIn, setLoggedIn] = useState([]);
 	return (
 		<main>
-			{!register && (
-				<LoginUser
-					email={email}
-					password={password}
-					formValidator={formValidator}
-					setRegister={setRegister}
-				/>
-			)}
-			{register && (
-				<RegisterUser
-					register={register}
-					playerName={playerName}
-					email={email}
-					password={password}
-					setRegister={setRegister}
-					formValidator={formValidator}
-				/>
-			)}
+			<Router>
+				<Routes>
+					<Route path='/home' element={<Home loggedIn={loggedIn} />} />
+					<Route
+						path='/register'
+						element={<RegisterUser setLoggedIn={setLoggedIn} />}
+					/>
+					<Route path='/' element={<LoginUser setLoggedIn={setLoggedIn} />} />
+				</Routes>
+			</Router>
 		</main>
 	);
 }

@@ -1,12 +1,16 @@
-export default function PasswordRegister({ password }) {
+export default function PasswordRegister({ handleInput }) {
 	return (
 		<div className='pass'>
-			<label htmlFor='password'>Password:</label>
+			<label hidden={true} htmlFor='password'>
+				Password:
+			</label>
 			<input
 				type='password'
 				id='password'
 				autoComplete='new-password'
-				ref={password}
+				name='password'
+				placeholder='Password'
+				onChange={handleInput}
 			/>
 		</div>
 	);

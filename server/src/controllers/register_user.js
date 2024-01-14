@@ -4,9 +4,9 @@ import salt from '../../security/salt.js';
 
 export default async function registerUser(req, res, next) {
 	const user = req.body;
+	const { email, password } = user;
 
-	const { player, email, password } = user;
-	const alreadyRegistered = await userStore.findOne({ email });
+	const alreadyRegistered = await userStore.findOne({ email: email });
 
 	if (alreadyRegistered) {
 		return res.status(400).send('Already Registered. Please Login');
@@ -15,11 +15,11 @@ export default async function registerUser(req, res, next) {
 	user.password = await bcrypt.hash(password, salt);
 
 	await userStore.insertOne(user);
-	console.log(user);
-
 	if (!user._id) {
 		return res.status(400).send('Something Fucked Up');
 	}
 
-	res.status(200).send({ message: 'Register Successful', user: user });
+	req.session.username = email;
+	req.session.authorized = true;
+	res.status(200).send(req.session);
 }

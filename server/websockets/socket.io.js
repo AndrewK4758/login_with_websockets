@@ -1,7 +1,7 @@
 import app from '../app.js';
 import { Server } from 'socket.io';
 import { createServer } from 'http';
-// import fs from 'fs';
+import fs from 'fs';
 
 /** FOR HTTPS SERVER
 const options = {
@@ -15,7 +15,7 @@ const allowedOrigins = [
 	'https://www.andrew-k.us',
 	'https://www.login-server-131l.onrender.com:',
 	'http://127.0.0.1:4443',
-	'http://localhost:5173',
+	'https://localhost:5173',
 ];
 
 const httpServer = createServer(app);
