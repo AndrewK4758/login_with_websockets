@@ -8,6 +8,7 @@ export default async function loginUser(req, res, next) {
 		if (err) return res.status(404).json({ Message: err });
 	});
 
+	console.log(user);
 	const correctPassword = await bcrypt.compare(password, user.password);
 
 	if (!correctPassword) {
