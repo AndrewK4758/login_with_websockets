@@ -15,7 +15,7 @@ const sessionMiddle = session({
 	resave: false,
 	saveUninitialized: false,
 	cookie: {
-		sameSite: 'strict',
+		sameSite: 'lax',
 	},
 });
 

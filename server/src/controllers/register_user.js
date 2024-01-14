@@ -19,7 +19,7 @@ export default async function registerUser(req, res, next) {
 		return res.status(400).send('Something Fucked Up');
 	}
 
-	req.session.username = email;
+	req.session.user = user;
 	req.session.authorized = true;
-	res.status(200).send(req.session);
+	res.send(req.session);
 }
