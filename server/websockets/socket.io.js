@@ -1,6 +1,6 @@
 import app from '../app.js';
 import { Server } from 'socket.io';
-import { createServer } from 'http';
+import { createServer } from 'https';
 // import fs from 'fs';
 
 /** FOR HTTPS SERVER

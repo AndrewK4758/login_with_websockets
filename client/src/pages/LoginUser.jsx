@@ -40,32 +40,29 @@ export default function LoginUser({ setLoggedIn }) {
 			alert(
 				'Email must be valid.\n Password must be minimum 8 characters; consisting of minumum: 1 Uppercase letter, 1 number, and 1 special character.'
 			);
-		else {
-			const request = axios.post(
-				'https://www.andrew-k.us/api/v1/login',
-				values
-			);
+		// else {
+		const request = axios.post('https://www.andrew-k.us/api/v1/login', values);
 
-			request
-				.then((res) => {
-					const user = res.data;
-					console.log(`${user.player.playerName} is connected.`);
-					socket.connect();
-					socket.on('connect', () => {
-						console.log(`web socket id: ${socket.id}`);
-					});
-					return res;
-				})
-				.then((res) => {
-					const user = res.data;
-					setLoggedIn([user.player.playerName, user.email]);
-					navigate('/home');
-				})
-				.catch((err) => {
-					console.log(err);
+		request
+			.then((res) => {
+				const user = res.data;
+				console.log(`${user.player.playerName} is connected.`);
+				socket.connect();
+				socket.on('connect', () => {
+					console.log(`web socket id: ${socket.id}`);
 				});
-		}
+				return res;
+			})
+			.then((res) => {
+				const user = res.data;
+				setLoggedIn([user.player.playerName, user.email]);
+				navigate('/home');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
+	// };
 
 	return (
 		<div>

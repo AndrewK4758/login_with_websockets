@@ -5,6 +5,7 @@ import formValidator from '../components/FormValidator.js';
 import Banner from '../components/Banner.jsx';
 import PasswordRegister from '../components/PasswordRegister.jsx';
 import InputField from '../components/InputField.jsx';
+import socket from '../socket.io.js';
 import { Player } from '../../../project/src/player.js';
 
 export default function RegisterUser() {
@@ -35,16 +36,19 @@ export default function RegisterUser() {
 			);
 			response
 				.then((res) => {
-					console.log(res.data);
 					if (res.data.authorized) {
+						const user = res.data;
+						console.log(`${user.player.playerName} is connected.`);
+						socket.connect();
+						socket.on('connect', () => {
+							console.log(`web socket id: ${socket.id}`);
+						});
 						nav('/');
 					} else {
 						nav('/register');
 					}
 				})
 				.catch((err) => {
-					const message = err.response.data;
-					alert(message);
 					console.log(err);
 					nav('/');
 				});

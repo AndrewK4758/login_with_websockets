@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Banner from '../components/Banner.jsx';
 
 export default function Home({ loggedIn }) {
