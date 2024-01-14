@@ -15,21 +15,6 @@ export default function RegisterUser() {
 	});
 	const nav = useNavigate('');
 
-	useEffect(() => {
-		const x = async () => {
-			const response = axios.get('https://www.andrew-k.us/api/v1/session');
-			response
-				.then((res) => {
-					console.log(res, 'effect');
-					if (res.data === true) {
-						navigate('/home');
-					}
-				})
-				.catch((err) => console.log(err));
-		};
-		x();
-	}, []);
-
 	const handleInput = (e) => {
 		setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
