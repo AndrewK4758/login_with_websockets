@@ -93,7 +93,7 @@ export default function RegisterUser() {
 				</div>
 				<PasswordRegister handleInput={handleInput} />
 				<div className='buttons'>
-					<button type='Submit'>Log In</button>
+					<button type='Submit'>Register</button>
 				</div>
 			</form>
 		</div>
