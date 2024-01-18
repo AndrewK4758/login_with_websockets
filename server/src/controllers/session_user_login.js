@@ -1,9 +1,16 @@
+import { sessionStore } from '../../database/db.js';
+
 export default async function sessionUserLogin(req, res, next) {
-	if (req.session.authorized) {
-		console.log('logged in');
-		await res.send(req.session);
+	const email = req.session.email;
+	const authorized = req.session.authorized;
+
+	const hasSession = await sessionStore.findOne({ 'session.email': email });
+	console.log(email, authorized, hasSession);
+
+	if (hasSession && authorized) {
+		await res.send({ email: email, authorized: authorized });
 	} else {
-		console.log('NO SESSION');
-		await res.send(false);
+		await res.send(req.session.authorized);
 	}
+	next();
 }

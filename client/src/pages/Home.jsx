@@ -1,6 +1,10 @@
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Banner from '../components/Banner.jsx';
 
 export default function Home({ loggedIn }) {
+	const navigate = useNavigate();
+
 	const X = () => {
 		if (loggedIn) {
 			return (
@@ -17,6 +21,16 @@ export default function Home({ loggedIn }) {
 		}
 	};
 
+	const handleLogout = () => {
+		const response = axios.get('https://localhost:4200/api/v1/logout');
+		response
+			.then((res) => {
+				console.log(res.data);
+				navigate('/');
+			})
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<main>
 			<Banner
@@ -25,6 +39,9 @@ export default function Home({ loggedIn }) {
 				additional={'You are logged in'}
 			/>
 			<X />
+			<button type='button' onClick={() => handleLogout()}>
+				Logout
+			</button>
 		</main>
 	);
 }

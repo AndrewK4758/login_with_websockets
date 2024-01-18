@@ -14,7 +14,7 @@ export default function RegisterUser() {
 		email: '',
 		password: '',
 	});
-	const nav = useNavigate('');
+	const navigate = useNavigate();
 
 	const handleInput = (e) => {
 		setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,26 +31,17 @@ export default function RegisterUser() {
 			values.player = new Player(values.player);
 
 			const response = axios.post(
-				'https://www.andrew-k.us/api/v1/register',
+				'https://localhost:4200/api/v1/register',
 				values
 			);
 			response
 				.then((res) => {
-					if (res.data.authorized) {
-						const user = res.data;
-						console.log(`${user.player.playerName} is connected.`);
-						socket.connect();
-						socket.on('connect', () => {
-							console.log(`web socket id: ${socket.id}`);
-						});
-						nav('/');
-					} else {
-						nav('/register');
-					}
+					console.log(res.data);
+					navigate('/');
 				})
 				.catch((err) => {
 					console.log(err);
-					nav('/');
+					navigate('/register');
 				});
 		}
 	};
@@ -94,6 +85,9 @@ export default function RegisterUser() {
 				<PasswordRegister handleInput={handleInput} />
 				<div className='buttons'>
 					<button type='Submit'>Register</button>
+					<button type='button' onClick={() => navigate('/')}>
+						Login
+					</button>
 				</div>
 			</form>
 		</div>

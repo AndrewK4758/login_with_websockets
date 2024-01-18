@@ -5,7 +5,7 @@ import formValidator from '../components/FormValidator.js';
 import Banner from '../components/Banner.jsx';
 import PasswordRegister from '../components/PasswordRegister.jsx';
 import InputField from '../components/InputField.jsx';
-import socket from '../socket.io.js';
+import connectWS from '../socket.io.js';
 
 export default function LoginUser({ setLoggedIn }) {
 	const [values, setValues] = useState({
@@ -16,11 +16,13 @@ export default function LoginUser({ setLoggedIn }) {
 
 	useEffect(() => {
 		const x = async () => {
-			const response = axios.get('https://www.andrew-k.us/api/v1/session');
+			const response = axios.get('https://localhost:4200/api/v1/session');
 			response
 				.then((res) => {
+					console.log(res.data);
 					if (res.data.authorized === true) {
-						setLoggedIn([res.data.user.player.playerName, res.data.user.email]);
+						connectWS();
+						setLoggedIn([res.data.email]);
 						navigate('/home');
 					}
 				})
@@ -41,19 +43,13 @@ export default function LoginUser({ setLoggedIn }) {
 				'Email must be valid.\n Password must be minimum 8 characters; consisting of minumum: 1 Uppercase letter, 1 number, and 1 special character.'
 			);
 		else {
-			const request = axios.post(
-				'https://www.andrew-k.us/api/v1/login',
-				values
-			);
+			const request = axios.post('https://localhost:4200/api/v1/login', values);
 
 			request
 				.then((res) => {
 					const user = res.data;
 					console.log(`${user.player.playerName} is connected.`);
-					socket.connect();
-					socket.on('connect', () => {
-						console.log(`web socket id: ${socket.id}`);
-					});
+					connectWS();
 					return res;
 				})
 				.then((res) => {

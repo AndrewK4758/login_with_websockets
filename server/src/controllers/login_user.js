@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import userStore from '../../database/db.js';
+import { userStore } from '../../database/db.js';
 
 export default async function loginUser(req, res, next) {
 	const { email, password } = req.body;
@@ -16,8 +16,10 @@ export default async function loginUser(req, res, next) {
 		return res.status(400).send('Incorrect Password');
 	}
 
-	req.session.user = user;
+	req.session.email = user.email;
+	req.session.password = user.password;
 	req.session.authorized = true;
 	res.send(user).status(200);
+	next();
 }
                                                                                                                                                                                      

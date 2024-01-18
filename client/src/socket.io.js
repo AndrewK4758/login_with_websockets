@@ -6,8 +6,15 @@ import { io } from 'socket.io-client';
 // 	'http://127.0.0.1:4443',
 // ];
 
-const URL = 'https://www.andrew-k.us';
+const URL = 'https://localhost:4200';
 
 const socket = io(URL, { autoConnect: false });
 
-export default socket;
+const connectWS = () => {
+	socket.connect();
+	socket.on('connect', () => {
+		console.log(`web socket id: ${socket.id}`);
+	});
+};
+
+export default connectWS;
