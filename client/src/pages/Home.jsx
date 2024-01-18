@@ -22,7 +22,7 @@ export default function Home({ loggedIn }) {
 	};
 
 	const handleLogout = () => {
-		const response = axios.get('https://localhost:4200/api/v1/logout');
+		const response = axios.get('https://www.andrew-k.us/api/v1/logout');
 		response
 			.then((res) => {
 				console.log(res.data);

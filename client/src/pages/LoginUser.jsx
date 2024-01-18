@@ -16,7 +16,7 @@ export default function LoginUser({ setLoggedIn }) {
 
 	useEffect(() => {
 		const x = async () => {
-			const response = axios.get('https://localhost:4200/api/v1/session');
+			const response = axios.get('https://www.andrew-k.us/api/v1/session');
 			response
 				.then((res) => {
 					console.log(res.data);
@@ -43,7 +43,10 @@ export default function LoginUser({ setLoggedIn }) {
 				'Email must be valid.\n Password must be minimum 8 characters; consisting of minumum: 1 Uppercase letter, 1 number, and 1 special character.'
 			);
 		else {
-			const request = axios.post('https://localhost:4200/api/v1/login', values);
+			const request = axios.post(
+				'https://www.andrew-k.us/api/v1/login',
+				values
+			);
 
 			request
 				.then((res) => {
