@@ -20,7 +20,7 @@ export default function LandingPage({ setLoggedIn }) {
 						connectWS();
 						navigate('/home');
 					} else {
-						console.log(res.data, 'something here');
+						console.log(res.data);
 						navigate(res.data.redirect);
 					}
 				})
