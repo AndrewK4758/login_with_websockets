@@ -22,14 +22,14 @@ import { router as logoutUser } from './src/routes/logout_user.js';
 app.use(sessionData);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-	cors({
-		origin: '*',
-		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-		preflightContinue: false,
-		optionsSuccessStatus: 204,
-	})
-);
+// app.use(
+// 	cors({
+// 		origin: '*',
+// 		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+// 		preflightContinue: false,
+// 		optionsSuccessStatus: 204,
+// 	})
+// );
 
 app.use(express.static(path.dirname('../client/dist/index.html')));
 
