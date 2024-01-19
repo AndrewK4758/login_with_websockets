@@ -7,7 +7,7 @@ import PasswordRegister from '../components/PasswordRegister.jsx';
 import InputField from '../components/InputField.jsx';
 import { Player } from '../../../project/src/player.js';
 
-export default function RegisterUser() {
+export default function RegisterUser({ setLoggedIn }) {
 	const [values, setValues] = useState({
 		player: '',
 		email: '',

@@ -33,14 +33,14 @@ export default function LoginUser({ setLoggedIn }) {
 
 			request
 				.then((res) => {
-					const user = res.data;
-					console.log(`${user.player.playerName} is connected.`);
+					// const user = res.data;
+					// console.log(`${user.player.playerName} is connected.`);
 					connectWS();
 					return res;
 				})
 				.then((res) => {
-					const user = res.data;
-					setLoggedIn(['logged in']);
+					// const user = res.data;
+					// setLoggedIn(['logged in']);
 					navigate('/home');
 				})
 				.catch((err) => {
