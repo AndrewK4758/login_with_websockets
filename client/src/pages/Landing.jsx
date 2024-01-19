@@ -14,10 +14,10 @@ export default function LandingPage({ setLoggedIn }) {
 		await axios
 			.get('https://www.andrew-k.us/api/v1/session')
 			.then((res) => {
-				console.log(res.data);
 				if (res.data.authorized) {
+					console.log(res.data.session);
 					connectWS();
-					setLoggedIn([res.data.email]);
+					setLoggedIn([`welcome ${'AK'}`]);
 					navigate('/home');
 				} else {
 					console.log(res.data);
