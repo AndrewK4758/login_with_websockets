@@ -4,6 +4,11 @@ body {
 	margin: 0;
 	padding: 0;
 	align-items: center;
+	color: #ffd300;
+}
+
+.landing {
+	text-align: center;
 }
 
 .header {

@@ -1,16 +1,19 @@
-import { sessionStore } from '../../database/db.js';
+import { sessionDB } from '../../database/db.js';
 
 export default async function sessionUserLogin(req, res, next) {
+	console.log(req.session);
 	const email = req.session.email;
 	const authorized = req.session.authorized;
-
-	const hasSession = await sessionStore.findOne({ 'session.email': email });
-	console.log(email, authorized, hasSession);
-
-	if (hasSession && authorized) {
-		await res.send({ email: email, authorized: authorized });
+	console.log(email, authorized);
+	if (email && authorized) {
+		const hasSession = await sessionDB.findOne({ 'session.email': email });
+		console.log(email, authorized, hasSession);
+		if (hasSession && authorized) {
+			await res.send({ email: email, authorized: authorized });
+			next();
+		}
 	} else {
-		await res.send(req.session.authorized);
+		res.send({ message: 'no session in db' }).status(200);
+		next();
 	}
-	next();
 }
