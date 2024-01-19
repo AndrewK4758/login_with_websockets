@@ -17,7 +17,7 @@ export default function LandingPage({ setLoggedIn }) {
 				console.log(res.data);
 				if (res.data.authorized) {
 					connectWS();
-					setLoggedIn([res.data.player.playerName, res.data.email]);
+					setLoggedIn([res.data.email]);
 					navigate('/home');
 				} else {
 					console.log(res.data);
