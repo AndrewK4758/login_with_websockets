@@ -12,7 +12,7 @@ export default function App() {
 		<main>
 			<Router>
 				<Routes>
-					<Route path='/' element={<LandingPage />} />
+					<Route path='/' element={<LandingPage setLoggedIn={setLoggedIn} />} />
 					<Route
 						path='/register'
 						element={<RegisterUser setLoggedIn={setLoggedIn} />}

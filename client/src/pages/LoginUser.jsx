@@ -14,23 +14,6 @@ export default function LoginUser({ setLoggedIn }) {
 	});
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		const x = async () => {
-			const response = axios.get('https://www.andrew-k.us/api/v1/session');
-			response
-				.then((res) => {
-					console.log(res.data);
-					if (res.data.authorized === true) {
-						connectWS();
-						setLoggedIn([res.data.email]);
-						navigate('/home');
-					}
-				})
-				.catch((err) => console.log(err));
-		};
-		x();
-	}, []);
-
 	const handleInput = (e) => {
 		setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
