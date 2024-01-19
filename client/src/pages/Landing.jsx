@@ -19,6 +19,8 @@ export default function LandingPage({ setLoggedIn }) {
 						connectWS();
 						setLoggedIn([res.data.email]);
 						navigate('/home');
+					} else {
+						navigate(res.data);
 					}
 				})
 				.catch((err) => console.log(err));

@@ -15,6 +15,7 @@ export default async function sessionUserLogin(req, res, next) {
 			await res.send({ email: email, authorized: authorized });
 			next();
 		} else {
+			res.send('/login');
 			next();
 		}
 	} else {
