@@ -11,10 +11,8 @@ export default function LandingPage({ setLoggedIn }) {
 
 	useEffect(() => {
 		const x = async () => {
-			const response = await axios.get(
-				'https://www.andrew-k.us/api/v1/session'
-			);
-			response
+			await axios
+				.get('https://www.andrew-k.us/api/v1/session')
 				.then((res) => {
 					console.log(res.data);
 					if (res.data.authorized === true) {

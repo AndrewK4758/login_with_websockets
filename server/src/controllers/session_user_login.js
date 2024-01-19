@@ -14,6 +14,8 @@ export default async function sessionUserLogin(req, res, next) {
 		if (hasSession && authorized) {
 			await res.send({ email: email, authorized: authorized });
 			next();
+		} else {
+			next();
 		}
 	} else {
 		res.send({ message: 'no session in db' }).status(200);
