@@ -15,13 +15,13 @@ export default function LandingPage({ setLoggedIn }) {
 			.get('https://www.andrew-k.us/api/v1/session')
 			.then((res) => {
 				if (res.data.authorized) {
-					console.log(res.data.session);
+					console.log('have session');
 					connectWS();
-					setLoggedIn([`welcome AK`]);
+					// setLoggedIn([`welcome AK`]);
 					navigate('/home');
 				} else {
-					console.log(res.data);
-					navigate(res.data.redirect);
+					console.log(res.data, 'something here');
+					// navigate(res.data.redirect);
 				}
 			})
 			.catch((err) => console.log(err));

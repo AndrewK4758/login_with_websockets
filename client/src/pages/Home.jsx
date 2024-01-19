@@ -39,7 +39,7 @@ export default function Home({ loggedIn }) {
 				title={'Home Page'}
 				additional={'You are logged in'}
 			/>
-			<X />
+			{/* <X /> */}
 			<button type='button' onClick={() => handleLogout()}>
 				Logout
 			</button>
