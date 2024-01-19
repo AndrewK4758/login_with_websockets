@@ -1,5 +1,8 @@
 import { sessionDB } from '../../database/db.js';
 
+//SAVE THE ID OF THE USER WHEN THE USER REGISTERS, THIS WILL BE HOW I SEARCH THE DB FOR A SESSION WHEN SOMEONE LOGS IN SO NO DUPLICATE SESSIONS ARE CREATED
+
+
 export default async function sessionUserLogin(req, res, next) {
 	console.log(req.session);
 	const email = req.session.email;
