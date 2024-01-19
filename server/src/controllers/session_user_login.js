@@ -4,7 +4,7 @@ import { sessionDB } from '../../database/db.js';
 
 
 export default async function sessionUserLogin(req, res, next) {
-	console.log(req.session);
+	console.log(req.sessionStore);
 	const email = req.session.email;
 	const authorized = req.session.authorized;
 	console.log(email, authorized);

@@ -22,6 +22,7 @@ app.use(
 		credentials: true,
 		allowedHeaders: ['Access-Control-Allow-Headers'],
 		preflightContinue: true,
+		exposedHeaders: ['Set-Cookie'],
 	})
 );
 
