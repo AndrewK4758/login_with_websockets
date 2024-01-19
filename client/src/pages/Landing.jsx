@@ -17,7 +17,7 @@ export default function LandingPage({ setLoggedIn }) {
 				if (res.data.authorized) {
 					console.log(res.data.session);
 					connectWS();
-					setLoggedIn([`welcome ${'AK'}`]);
+					setLoggedIn([`welcome AK`]);
 					navigate('/home');
 				} else {
 					console.log(res.data);

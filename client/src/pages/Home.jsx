@@ -10,6 +10,7 @@ export default function Home({ loggedIn }) {
 			return (
 				<div>
 					{loggedIn.map((ele, idx) => {
+						console.log(ele);
 						return (
 							<div key={idx} style={{ color: '#ffd300', textAlign: 'center' }}>
 								{ele}

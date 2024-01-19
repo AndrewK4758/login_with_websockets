@@ -40,7 +40,7 @@ export default function LoginUser({ setLoggedIn }) {
 				})
 				.then((res) => {
 					const user = res.data;
-					setLoggedIn([user.player.playerName, user.email]);
+					setLoggedIn(['logged in']);
 					navigate('/home');
 				})
 				.catch((err) => {
