@@ -16,7 +16,7 @@ export default async function loginUser(req, res, next) {
 		return res.status(400).send('Incorrect Password');
 	}
 
-	req.session.player = user.player;
+	req.session.player = user.player.name;
 	req.session.email = user.email;
 	req.session.password = user.password;
 	req.session.authorized = true;

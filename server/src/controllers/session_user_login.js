@@ -2,6 +2,7 @@
 
 export default async function sessionUserLogin(req, res, next) {
 	if (req.session.authorized) {
+		console.log(req.session);
 		res.send(req.session);
 		next();
 	} else {
