@@ -10,22 +10,23 @@ export default function LandingPage({ setLoggedIn }) {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const x = async () => {
-			await axios
-				.get('https://www.andrew-k.us/api/v1/session')
-				.then((res) => {
+	const x = async () => {
+		await axios
+			.get('https://www.andrew-k.us/api/v1/session')
+			.then((res) => {
+				console.log(res.data);
+				if (res.data.authorized) {
+					connectWS();
+					setLoggedIn([res.data.player, res.data.email]);
+					navigate('/home');
+				} else {
 					console.log(res.data);
-					if (res.data.authorized === true) {
-						connectWS();
-						setLoggedIn([res.data.email]);
-						navigate('/home');
-					} else {
-						navigate(res.data);
-					}
-				})
-				.catch((err) => console.log(err));
-		};
-		x();
+					navigate(res.data.redirect);
+				}
+			})
+			.catch((err) => console.log(err));
+	};
+	x();
 	}, []);
 
 	return (

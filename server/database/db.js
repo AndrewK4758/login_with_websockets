@@ -10,7 +10,6 @@ const mongoClient = new MongoClient(URL);
 
 const db = mongoClient.db(DB_NAME);
 const userStore = db.collection(DB_COLLECTION);
-const sessionDB = db.collection(DB_SESSIONS);
 const sessionStore = MongoStore.create({
 	client: mongoClient,
 	dbName: DB_NAME,
@@ -19,4 +18,4 @@ const sessionStore = MongoStore.create({
 	stringify: false,
 });
 
-export { userStore, sessionStore, sessionDB };
+export { userStore, sessionStore };
