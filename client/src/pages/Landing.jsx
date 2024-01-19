@@ -2,7 +2,7 @@ import axios from 'axios';
 import Banner from '../components/Banner';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import connectWS from '../socket.io';
+import { connectWS } from '../socket.io';
 
 //ADD USEEFFECT TO CHECK FOR SESSION AND AUTOMATIC LOGIN
 
@@ -10,23 +10,23 @@ export default function LandingPage({ setLoggedIn }) {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-	const x = async () => {
-		await axios
-			.get('https://www.andrew-k.us/api/v1/session')
-			.then((res) => {
-				if (res.data.authorized) {
-					console.log('have session');
-					connectWS();
-					// setLoggedIn([`welcome AK`]);
-					navigate('/home');
-				} else {
-					console.log(res.data, 'something here');
-					// navigate(res.data.redirect);
-				}
-			})
-			.catch((err) => console.log(err));
-	};
-	x();
+		const x = async () => {
+			await axios
+				.get('https://www.andrew-k.us/api/v1/session')
+				.then((res) => {
+					if (res.data.authorized) {
+						console.log('have session');
+						setLoggedIn([res.data.player.playerName, res.data.email]);
+						connectWS();
+						navigate('/home');
+					} else {
+						console.log(res.data, 'something here');
+						navigate(res.data.redirect);
+					}
+				})
+				.catch((err) => console.log(err));
+		};
+		x();
 	}, []);
 
 	return (

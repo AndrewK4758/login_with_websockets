@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import formValidator from '../components/FormValidator.js';
 import Banner from '../components/Banner.jsx';
 import PasswordRegister from '../components/PasswordRegister.jsx';
 import InputField from '../components/InputField.jsx';
-import connectWS from '../socket.io.js';
+import { connectWS } from '../socket.io.js';
 
 export default function LoginUser({ setLoggedIn }) {
 	const [values, setValues] = useState({
@@ -33,14 +33,12 @@ export default function LoginUser({ setLoggedIn }) {
 
 			request
 				.then((res) => {
-					// const user = res.data;
-					// console.log(`${user.player.playerName} is connected.`);
+					console.log(`${res.data.player.playerName} is connected.`);
 					connectWS();
 					return res;
 				})
 				.then((res) => {
-					// const user = res.data;
-					// setLoggedIn(['logged in']);
+					setLoggedIn([res.data.player.playerName, res.data.email]);
 					navigate('/home');
 				})
 				.catch((err) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import formValidator from '../components/FormValidator.js';
 import Banner from '../components/Banner.jsx';
@@ -7,7 +7,7 @@ import PasswordRegister from '../components/PasswordRegister.jsx';
 import InputField from '../components/InputField.jsx';
 import { Player } from '../../../project/src/player.js';
 
-export default function RegisterUser({ setLoggedIn }) {
+export default function RegisterUser() {
 	const [values, setValues] = useState({
 		player: '',
 		email: '',

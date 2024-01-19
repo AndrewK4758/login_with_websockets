@@ -7,16 +7,13 @@ import RegisterUser from './pages/RegisterUser.jsx';
 import LandingPage from './pages/Landing.jsx';
 
 export default function App() {
-	const [loggedIn, setLoggedIn] = useState('');
+	const [loggedIn, setLoggedIn] = useState([]);
 	return (
 		<main>
 			<Router>
 				<Routes>
 					<Route path='/' element={<LandingPage setLoggedIn={setLoggedIn} />} />
-					<Route
-						path='/register'
-						element={<RegisterUser setLoggedIn={setLoggedIn} />}
-					/>
+					<Route path='/register' element={<RegisterUser />} />
 					<Route
 						path='/login'
 						element={<LoginUser setLoggedIn={setLoggedIn} />}

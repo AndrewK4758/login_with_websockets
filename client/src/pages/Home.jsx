@@ -1,32 +1,33 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Banner from '../components/Banner.jsx';
+import { socket } from '../socket.io.js';
 
 export default function Home({ loggedIn }) {
 	const navigate = useNavigate();
 
-	// const X = () => {
-	// 	if (loggedIn) {
-	// 		return (
-	// 			<div>
-	// 				{loggedIn.map((ele, idx) => {
-	// 					console.log(ele);
-	// 					return (
-	// 						<div key={idx} style={{ color: '#ffd300', textAlign: 'center' }}>
-	// 							{ele}
-	// 						</div>
-	// 					);
-	// 				})}
-	// 			</div>
-	// 		);
-	// 	}
-	// };
+	const X = () => {
+		if (loggedIn) {
+			return (
+				<div>
+					{loggedIn.map((ele, idx) => {
+						return (
+							<div key={idx} style={{ color: '#ffd300', textAlign: 'center' }}>
+								{ele}
+							</div>
+						);
+					})}
+				</div>
+			);
+		}
+	};
 
 	const handleLogout = () => {
 		const response = axios.get('https://www.andrew-k.us/api/v1/logout');
 		response
 			.then((res) => {
 				console.log(res.data);
+				socket.disconnect();
 				navigate('/');
 			})
 			.catch((err) => console.log(err));
@@ -39,7 +40,7 @@ export default function Home({ loggedIn }) {
 				title={'Home Page'}
 				additional={'You are logged in'}
 			/>
-			{/* <X /> */}
+			<X />
 			<button type='button' onClick={() => handleLogout()}>
 				Logout
 			</button>

@@ -17,4 +17,4 @@ const connectWS = () => {
 	});
 };
 
-export default connectWS;
+export { connectWS, socket };
